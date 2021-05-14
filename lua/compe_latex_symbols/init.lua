@@ -2,6 +2,14 @@ local compe = require 'compe'
 
 local Source = {}
 
+local function copytable(orig)
+	local copy = {}
+	for orig_key, orig_value in pairs(orig) do
+		copy[orig_key] = orig_value
+	end
+	return copy
+end
+
 function Source.get_metadata(self)
 	return {
 		priority = 100,
@@ -69,7 +77,13 @@ function Source.complete(self, args)
 	local items = {}
 	for code, symbol in pairs(symbols_1l[first_letter]) do
 		if code:sub(1, #input):lower() == input:lower() then
-			table.insert(items, symbol)
+			if vim.g.compe_latex_insert_code then
+				local symbol_rev = copytable(symbol)
+				symbol_rev.word = symbol_rev.menu
+				table.insert(items, symbol_rev)
+			else
+				table.insert(items, symbol)
+			end
 		end
 	end
 
