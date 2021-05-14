@@ -26,5 +26,16 @@ require('compe').setup {
 }
 ```
 
+## Options
+
+### Insert the code
+
+You can customize to insert either the symbol or the code itself with `b:compe_latex_insert_code`.
+
+```vim
+" Always insert the code in markdown files
+autocmd FileType markdown let b:compe_latex_insert_code = v:true
+```
+
 [nvim-compe]: https://github.com/hrsh7th/nvim-compe/
 [packer.nvim]: https://github.com/wbthomason/packer.nvim/
