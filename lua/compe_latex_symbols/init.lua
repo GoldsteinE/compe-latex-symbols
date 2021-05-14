@@ -77,7 +77,7 @@ function Source.complete(self, args)
 	local items = {}
 	for code, symbol in pairs(symbols_1l[first_letter]) do
 		if code:sub(1, #input):lower() == input:lower() then
-			if vim.g.compe_latex_insert_code then
+			if vim.b.compe_latex_insert_code then
 				local symbol_rev = copytable(symbol)
 				symbol_rev.word = symbol_rev.menu
 				table.insert(items, symbol_rev)
